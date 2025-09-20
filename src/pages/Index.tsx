@@ -119,6 +119,12 @@ const Index: React.FC = () => {
       {/* Animated Background */}
       <div className="fixed inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 animate-pulse"></div>
+        {/* Floating Marine Elements */}
+        <div className="absolute top-20 left-10 w-8 h-8 text-blue-400 animate-float">⚓</div>
+        <div className="absolute top-40 right-20 w-6 h-6 text-blue-300 animate-wave">🌊</div>
+        <div className="absolute bottom-32 left-1/4 w-4 h-4 text-blue-200 animate-bubble">🫧</div>
+        <div className="absolute top-60 right-1/3 w-5 h-5 text-blue-400 animate-anchor-swing">⛵</div>
+        <div className="absolute bottom-20 right-10 w-6 h-6 text-blue-300 animate-float">🐚</div>
       </div>
 
       {/* Header */}
@@ -160,17 +166,40 @@ const Index: React.FC = () => {
                   {/* Floating Icon */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-75 group-hover:scale-100">
                     <div className="bg-white/95 rounded-full p-4 shadow-lg animate-pulse">
-                      <Icon name="Camera" size={32} className="text-primary" />
+                      {collection.id === 1 ? (
+                        <div className="text-3xl animate-anchor-swing">⚓</div>
+                      ) : (
+                        <Icon name="Camera" size={32} className="text-primary" />
+                      )}
                     </div>
                   </div>
 
-                  {/* Sparkle Effects */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 transform rotate-12">
-                    <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                  </div>
-                  <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 transform -rotate-12">
-                    <div className="w-1 h-1 bg-primary rounded-full animate-ping"></div>
-                  </div>
+                  {/* Marine Theme Effects */}
+                  {collection.id === 1 && (
+                    <>
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 text-blue-400 animate-wave">
+                        🌊
+                      </div>
+                      <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 text-blue-300 animate-bubble">
+                        🫧
+                      </div>
+                      <div className="absolute top-1/2 right-8 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-400 text-blue-200 animate-float">
+                        🐚
+                      </div>
+                    </>
+                  )}
+                  
+                  {/* Sparkle Effects for other collections */}
+                  {collection.id !== 1 && (
+                    <>
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 transform rotate-12">
+                        <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
+                      </div>
+                      <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 transform -rotate-12">
+                        <div className="w-1 h-1 bg-primary rounded-full animate-ping"></div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div className="p-6 relative">
@@ -316,18 +345,31 @@ const Index: React.FC = () => {
 
             {/* Floating Particles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white/30 rounded-full animate-ping"
-                  style={{
-                    left: `${20 + i * 15}%`,
-                    top: `${30 + i * 10}%`,
-                    animationDelay: `${i * 0.5}s`,
-                    animationDuration: '3s'
-                  }}
-                />
-              ))}
+              {selectedCollection?.id === 1 ? (
+                // Marine theme particles for first collection
+                <>
+                  <div className="absolute top-20 left-10 text-2xl text-blue-400/30 animate-wave">🌊</div>
+                  <div className="absolute bottom-32 right-20 text-xl text-blue-300/40 animate-float">⚓</div>
+                  <div className="absolute top-1/3 right-1/4 text-lg text-blue-200/50 animate-bubble">🫧</div>
+                  <div className="absolute bottom-1/4 left-1/3 text-xl text-blue-400/30 animate-anchor-swing">⛵</div>
+                  <div className="absolute top-2/3 left-20 text-lg text-blue-300/40 animate-wave" style={{ animationDelay: '1s' }}>🐚</div>
+                  <div className="absolute top-1/4 left-1/2 text-sm text-blue-200/60 animate-bubble" style={{ animationDelay: '2s' }}>🫧</div>
+                </>
+              ) : (
+                // Default particles for other collections
+                [...Array(6)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white/30 rounded-full animate-ping"
+                    style={{
+                      left: `${20 + i * 15}%`,
+                      top: `${30 + i * 10}%`,
+                      animationDelay: `${i * 0.5}s`,
+                      animationDuration: '3s'
+                    }}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
