@@ -14,6 +14,18 @@ interface PhotoCollection {
 const photoCollections: PhotoCollection[] = [
   {
     id: 1,
+    title: "Морские Истории",
+    description: "Теплые моменты из жизни - семейные фото с морской душой",
+    coverImage: "https://cdn.poehali.dev/files/68d30dc6-0746-4989-b899-28663ca38d2e.jpg",
+    images: [
+      "https://cdn.poehali.dev/files/68d30dc6-0746-4989-b899-28663ca38d2e.jpg",
+      "/img/8f9aff19-5734-4b79-816b-cb19fb2fee16.jpg",
+      "/img/9e521f06-85e8-4191-844e-5af2137c86a4.jpg",
+      "/img/2d2a5579-8623-4364-b052-b42f1090bfaa.jpg"
+    ]
+  },
+  {
+    id: 2,
     title: "Классические Портреты",
     description: "Изысканная коллекция портретной фотографии в традиционном стиле",
     coverImage: "/img/8f9aff19-5734-4b79-816b-cb19fb2fee16.jpg",
@@ -24,7 +36,7 @@ const photoCollections: PhotoCollection[] = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: "Архитектурная Классика",
     description: "Величественные здания и архитектурные элементы в классическом исполнении",
     coverImage: "/img/9e521f06-85e8-4191-844e-5af2137c86a4.jpg",
@@ -35,7 +47,7 @@ const photoCollections: PhotoCollection[] = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "Винтажные Пейзажи",
     description: "Ностальгические виды природы в традиционной фотографической манере",
     coverImage: "/img/2d2a5579-8623-4364-b052-b42f1090bfaa.jpg",
